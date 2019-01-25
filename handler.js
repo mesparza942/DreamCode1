@@ -1,6 +1,26 @@
 'use strict';
 
 module.exports.hello = async (event, context) => {
+  
+  if(event.queryStringParameters && event.queryStringParameters.name){
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: 'Hello ' + event.queryStringParameters.name + ' nice to meet you :D',
+      }),
+    }
+  }
+
+  if(event.httpMethod === "POST" && event.body){
+    let json = JSON.parse(event.body);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: 'Hi I have received a JSON object from you :D',
+        object: json
+      }),
+    }
+  }
   return {
     statusCode: 200,
     body: JSON.stringify({

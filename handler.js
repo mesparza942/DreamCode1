@@ -51,15 +51,22 @@ module.exports.healthCheck = async () => {
 }
 
 module.exports.create = async (event) => {
+  console.log("--------------------------")
   try {
     const { Note } = await connectToDatabase()
-    const note = await Note.create(JSON.parse(event.body))
+    const deserializedBody = JSON.parse(event.body)
+    //deserializedBody = {}
+
+    deserializedBody.hobbies = JSON.stringify(deserializedBody.hobbies)
+    const note = await Note.create(deserializedBody)
+    note.hobbies = JSON.parse(note.hobbies)
     return {
       statusCode: 200,
       body: JSON.stringify(note)
     }
   } catch (err) {
     return {
+
       statusCode: err.statusCode || 500,
       headers: { 'Content-Type': 'text/plain' },
       body: 'Could not create the note.'
@@ -70,7 +77,9 @@ module.exports.create = async (event) => {
 module.exports.getOne = async (event) => {
   try {
     const { Note } = await connectToDatabase()
+    
     const note = await Note.findById(event.pathParameters.id)
+    note.hobbies = JSON.parse(note.hobbies)
     if (!note) throw new HTTPError(404, `Note with id: ${event.pathParameters.id} was not found`)
     return {
       statusCode: 200,

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const NoteModel = require('./models/Note')
+
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,

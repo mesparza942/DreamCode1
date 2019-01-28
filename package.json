@@ -1,0 +1,27 @@
+{
+  "name": "DreamCode1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesparza942/DreamCode1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mesparza942/DreamCode1/issues"
+  },
+  "homepage": "https://github.com/mesparza942/DreamCode1#readme",
+  "devDependencies": {
+    "serverless-offline": "^4.2.0"
+  },
+  "dependencies": {
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0"
+  }
+}
